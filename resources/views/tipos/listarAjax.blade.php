@@ -1,0 +1,1 @@
+@include('tipos.datos.tipos', array('class'=>'table-hover', 'tipos' => $tipos))

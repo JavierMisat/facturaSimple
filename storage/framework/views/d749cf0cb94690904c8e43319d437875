@@ -1,0 +1,29 @@
+<?php $__env->startSection('page_title'); ?> Gestionar Usuarios <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page_subtitle'); ?>
+    Crea, elimina y agrega usuarios de manera fácil.
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page_heading','Gestionar Usuarios'); ?>
+
+<?php $__env->startSection('dashboard-content'); ?>
+    <?php echo $__env->make('usuario.modal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('alertas.exito', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <div class="row">
+        <div class="col-md-12">
+            <?php echo $__env->make('widgets.alert', array('class'=>'info', 'dismissable'=>true, 'message'=> 'Se ha eliminado correctamente al usuario'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php echo $__env->make('widgets.alert', array('class'=>'danger', 'dismissable'=>true, 'message'=> 'Error, no se puede borrar usuarios con recaudos asociados'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php $__env->startSection('htable_panel_title','Usuarios del sistema'); ?>
+            <?php $__env->startSection('htable_panel_body'); ?>
+                <?php echo $__env->make('usuario.usuarios', array('class'=>'table-hover', 'usuario' => $usuarios), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php $__env->stopSection(); ?>
+            <?php echo $__env->make('widgets.panel', array('class'=>'primary', 'controls'=>true, 'header'=>true, 'as'=>'htable'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        </div>
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js_personalizado'); ?>
+    <?php echo Html::script('js/crud/usuarios.js'); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('plantillas.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

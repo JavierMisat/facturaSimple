@@ -1,0 +1,42 @@
+<div id="tipos">
+    <table class="table <?php echo e($class); ?>">
+        <thead>
+        <tr>
+            <th>Id Tipo</th>
+            <th>Descripción</th>
+            <th>Clientes de Este Tipo</th>
+            <?php if(Auth::user()->rol == SistemaGestionSimple\Usuario::SUPER_ADMIN): ?>
+                <th>Operaciones</th>
+            <?php endif; ?>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($tipos as $tipo): ?>
+
+            <tr>
+                <td><?php echo e($tipo->id_tipo); ?></td>
+                <td><?php echo e($tipo->descripcion); ?></td>
+                <td><span class="badge dangerb"><strong><?php echo e($tipo->clientesTipoCliente()->count()); ?></strong></span></td>
+
+                <?php if(Auth::user()->rol == SistemaGestionSimple\Usuario::SUPER_ADMIN): ?>
+                    <td>
+                        <?php if(Auth::user()->rol == SistemaGestionSimple\Usuario::SUPER_ADMIN): ?>
+
+                            <?php echo $__env->make('widgets.dropdown-button', array('class'=>'primary', 'value'=>'Eliminar / Editar', 'rounded'=>true, 'submenu'=> array(
+                            'lists' =>array('name' => 'Editar', 'link' => "/tipos/{$tipo->id_tipo}/edit"),
+                                      array('name' => 'Eliminar', 'onclick' => 'seleccionEliminar(this)', 'id' => $tipo->id_tipo, 'data-toggle' => 'modal', 'data-target' => '.bs-example-modal-sm', 'link' => '#'),
+                                  )), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                        <?php endif; ?>
+
+                    </td>
+                <?php endif; ?>
+
+
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <?php echo $tipos->render(); ?>
+
+</div>
+

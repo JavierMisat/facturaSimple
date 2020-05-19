@@ -1,0 +1,38 @@
+<div id="recaudadores">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Rol</th>
+            <th>Municipio</th>
+            <th>Departamento</th>
+            <th>Foto</th>
+            <th>Operaciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($usuarios as $usuario): ?>
+            <tr>
+                <td><?php echo e($usuario->nombre); ?></td>
+                <td><?php echo e($usuario->apellido); ?></td>
+                <td><?php echo e($usuario->email); ?></td>
+                <td><?php echo e($usuario->telefono); ?></td>
+                <td><?php echo e($usuario->rolUsuario->descripcion); ?></td>
+                <td><?php echo e($usuario->municipioUsuario->descripcion); ?></td>
+                <td><?php echo e($usuario->departamentoUsuario->descripcion); ?></td>
+                <td><img class="img-responsive img-thumbnail" style="width:100px;"
+                         src="<?php echo e(isset($usuario->foto) ? "/perfiles/$usuario->foto" : "/perfiles/default.png"); ?>"
+                         alt="<?php echo e($usuario->nombre); ?>"></td>
+                <td>
+
+                        <a href="/usuarios/<?php echo e($usuario->id_usuario); ?>/edit" class="btn btn-lg btn-primary btn-rounded fa fa-pencil-square-o"> Editar</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,62 @@
+
+
+<?php $__env->startSection('page_title'); ?> Calendario Completo <?php $__env->stopSection(); ?>
+<?php $__env->startSection('page_subtitle'); ?> Muy pronto reporte de rendimiento por días... <?php $__env->stopSection(); ?>
+<?php $__env->startSection('page_heading'); ?> Calendario de rendimiento <?php $__env->stopSection(); ?>
+
+
+<?php /* Define calendar_panel_title section */ ?>
+<?php $__env->startSection('calendar_panel_title', 'Calendario General'); ?>
+
+<?php /* Define calendar_panel_body section */ ?>
+<?php $__env->startSection('calendar_panel_body'); ?>
+    <div id="calendar1"></div>
+<?php $__env->stopSection(); ?>
+
+<?php /* Fill dashboard-content */ ?>
+<?php $__env->startSection('dashboard-content'); ?>
+    <?php echo $__env->make('widgets.panel', array(
+        'class' => 'primary',
+        'controls'=>true,
+        'header'=>true,
+        'as'=>'calendar'
+    ), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js'); ?>
+
+    @parent
+
+    <script type="text/javascript">
+
+        // page is now ready, initialize the calendar...
+
+        $('#calendar1').fullCalendar({
+            eventClick: function (calEvent, jsEvent, view) {
+
+                alert('Event: ' + calEvent.title);
+                alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                alert('View: ' + view.name);
+
+            }
+        });
+
+        var months = [
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre"
+        ];
+        $('.fc-toolbar h2').text(months[(new Date).getMonth()] + " de " + (new Date).getFullYear());
+    </script>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('plantillas.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

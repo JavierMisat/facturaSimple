@@ -1,0 +1,15 @@
+<div class="form-group">
+    <?php echo Form::label('cod_factura', 'Cod. factura'); ?>
+
+    <?php echo Form::text('cod_factura',null, ['class' => 'form-control', 'placeholder' => 'Código de la factura']); ?>
+
+</div>
+
+<div class="form-group">
+    <?php echo Form::label('comentarios', 'Comentarios (Opcional)'); ?>
+
+    <?php echo Form::textarea('comentarios',null, ['class' => 'form-control', 'placeholder' => 'Ingresa un comentario']); ?>
+
+</div>
+
+<hr/>

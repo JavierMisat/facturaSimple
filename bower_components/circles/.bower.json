@@ -1,0 +1,31 @@
+{
+  "name": "circles",
+  "main": "circles.min.js",
+  "homepage": "https://github.com/lugolabs/circles",
+  "authors": [
+    "lugolabs"
+  ],
+  "description": "Lightweight JavaScript library that generates circular graphs in SVG. Now with animation.",
+  "keywords": [
+    "circles",
+    "js",
+    "javascript",
+    "svg"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "spec"
+  ],
+  "_release": "e03b941fd2",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "e03b941fd2724599cb79ac61d50fad75344c699b"
+  },
+  "_source": "https://github.com/lugolabs/circles.git",
+  "_target": "*",
+  "_originalSource": "circles"
+}

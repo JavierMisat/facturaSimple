@@ -1,0 +1,114 @@
+<div id="clientes">
+    <table class="table <?php echo e($class); ?>">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th># Documento</th>
+            <th>Teléfono</th>
+            <th>Direccion</th>
+            <th>Municipio</th>
+            <th>Estado Cliente</th>
+            <th>Tipo Cliente</th>
+            <th>Operaciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($clientes as $cliente): ?>
+            <tr>
+
+                <?php if($cliente->facturasCliente->count() > 0): ?>
+
+                    <td>
+                        <a href="/clientes/<?php echo e($cliente->id_cliente); ?>"><strong> <?php echo e($cliente->nombre); ?> </strong></a>
+                    </td>
+
+                    <td>
+                        <a href="/clientes/<?php echo e($cliente->id_cliente); ?>"><strong>    <?php echo e($cliente->apellido); ?> </strong></a>
+                    </td>
+
+                    <td>
+                        <a href="/clientes/<?php echo e($cliente->id_cliente); ?>"><strong>  <?php echo e($cliente->documento); ?> </strong></a>
+                    </td>
+                <?php else: ?>
+
+                    <td>
+                        <?php echo e($cliente->nombre); ?>
+
+                    </td>
+
+                    <td>
+                        <?php echo e($cliente->apellido); ?>
+
+                    </td>
+
+                    <td>
+                        <?php echo e($cliente->documento); ?>
+
+                    </td>
+
+                <?php endif; ?>
+                <td>
+                    <?php if($cliente->telefono != null): ?>
+                        <a href="tel:<?php echo e($cliente->telefono); ?>"><i
+                                    class="fa fa-phone-square"></i> <?php echo e($cliente->telefono); ?>
+
+                        </a>
+                    <?php endif; ?>
+                </td>
+
+                <td>
+                    <span class="fa fa-location-arrow"></span>&nbsp;&nbsp;<?php echo e($cliente->direccion); ?>
+
+                </td>
+
+                <td>
+                    <span class="fa fa-map-marker"></span>&nbsp;&nbsp;<?php echo e($cliente->municipioCliente->descripcion); ?>
+
+                </td>
+
+
+                <?php if($cliente->facturasCliente()->where('estado', 0)->count() == 1): ?>
+
+                    <td><span class="label label-warning">PAGO PENDIENTE</span></td>
+
+                <?php elseif($cliente->facturasCliente()->where('estado', 0)->count() > 1): ?>
+
+                    <td><span class="label label-danger">CLIENTE EN MORA</span></td>
+
+                <?php elseif($cliente->facturasCliente()->where('estado', 1)->count() > 0): ?>
+
+                    <td><span class="label label-success">CLIENTE AL DÍA</span></td>
+
+                <?php else: ?>
+                    <td><span class="label label-info">SIN FACTURAS</span></td>
+
+                <?php endif; ?>
+
+
+                <td>
+                    <span class="label label-default"><strong><?php echo e($cliente->tipoCliente->descripcion); ?></strong></span>
+                </td>
+
+                <td>
+                    <?php echo $__env->make('widgets.dropdown-button', array('class'=>'primary', 'value'=>'Eliminar / Editar', 'rounded'=>true, 'submenu'=> array(
+                'lists' =>array('name' => 'Editar', 'link' => "clientes/$cliente->id_cliente/edit"),
+                          array('name' => 'Eliminar', 'onclick' => 'seleccionEliminar(this)', 'id' => $cliente->id_cliente, 'data-toggle' => 'modal', 'data-target' => '.bs-example-modal-sm', 'link' => '#'),
+                          array('name' => 'Ver Detalle', 'link' => "/clientes/{$cliente->id_cliente}"),
+                          array('name' => 'AGREGAR FACTURA', 'link' => "clientes/asignarfactura/{$cliente->id_cliente}"),
+
+                        )), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                </td>
+
+            </tr>
+
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <?php echo $clientes->render(); ?>
+
+    <input type="hidden" id="numClientes" value="<?php echo e($numClientes); ?>">
+</div>
+
+

@@ -1,0 +1,9 @@
+
+<div class="form-group">
+    <?php echo Form::label('rol', 'Descripción del Rol'); ?>
+
+    <?php echo Form::text('descripcion',null, ['class' => 'form-control', 'placeholder' => 'Ingresa el nombre del Rol']); ?>
+
+</div>
+
+<hr/>

@@ -1,0 +1,1 @@
+<?php echo $__env->make('municipio.datos.pagos', ['pagos' => $municipio->pagosMunicipio()->orderBy('created_at', 'DESC')->paginate(5)], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,27 @@
+
+
+<?php $__env->startSection('page_title'); ?> Nuestras Oficinas <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('dashboard-content'); ?>
+
+    <div class="row">
+        <div class="col-md-12">
+            <?php $__env->startSection('htable_panel_title','Centros de Atención Simple Comunicaciones'); ?>
+            <?php $__env->startSection('htable_panel_body'); ?>
+
+                <?php echo $__env->make('inicio.datos.datosOficinas', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+            <?php $__env->stopSection(); ?>
+            <?php echo $__env->make('widgets.panel', array('class'=>'info', 'controls'=>true, 'header'=>true, 'as'=>'htable'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        </div>
+
+    </div>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js_personalizado'); ?>
+
+    <?php echo Html::script('js/oficinas.js'); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('plantillas.front', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

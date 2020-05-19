@@ -1,0 +1,50 @@
+
+
+<?php $__env->startSection('page_title'); ?> Gestionar Pagos <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page_subtitle'); ?>
+    Filtra y controla el registro de pagos.
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page_heading','Lista Total de Pagos'); ?>
+
+<?php $__env->startSection('dashboard-content'); ?>
+
+    <?php if($pagos->count() > 0): ?>
+
+        <?php echo $__env->make('pago.modal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->make('alertas.exito', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <div class="row">
+            <div class="col-md-12">
+                <?php echo $__env->make('widgets.alert', array('class'=>'info', 'dismissable'=>true, 'message'=> 'pago'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php $__env->startSection('htable_panel_title','Pagos Registrados'); ?>
+                <?php $__env->startSection('htable_panel_body'); ?>
+                    <?php echo $__env->make('pago.datos.pagos', array('class'=>'table-hover', 'pagos' => $pagos), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php $__env->stopSection(); ?>
+                <?php echo $__env->make('widgets.panel', array('class'=>'primary', 'controls'=>true, 'header'=>true, 'as'=>'htable'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            </div>
+        </div>
+
+<?php $__env->startSection('js_personalizado'); ?>
+    <?php echo Html::script('js/crud/pagos.js'); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php else: ?>
+    <?php $__env->startSection('panel1_panel_title', 'Aún no hay Pagos'); ?>
+<?php $__env->startSection('panel1_panel_body'); ?>
+
+    <h2 class="text-center padder">Opps! todavía no se ha registrado el primera pago, pero tú, <?php echo e(Auth::user()->nombre); ?>,  puedes ser el primero. </h2>
+
+    <div class="panel-btn">
+        <a href="/pagos/create" class="btn btn btn-warning btn-bordered    center-block" style="max-width: 500px;font-size: 1.3em;">Haz clic aquí para registrar tu primer pago</a>
+    </div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('widgets.panel', array('class'=>'warning', 'controls'=>true, 'header'=>true, 'as'=>'panel1'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php endif; ?>
+
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('plantillas.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

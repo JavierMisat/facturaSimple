@@ -1,0 +1,35 @@
+<?php $__env->startSection('page_title'); ?>  Actualizando Tipo de Cliente <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page_subtitle'); ?>
+    Editar Tipo de Cliente
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page_heading','Actualización del Tipo de Cliente'); ?>
+
+<?php $__env->startSection('dashboard-content'); ?>
+    <?php echo $__env->make('alertas.request', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <?php echo Form::model($tipoCliente, ['route' => ['tipos.update', $tipoCliente->id_tipo], 'method' => 'PUT']); ?>
+
+    <div class="row col-sm-offset-3">
+        <div class="col-md-8">
+
+            <?php echo $__env->make('alertas.exito', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+            <?php $__env->startSection('test_panel_title', 'Actualizar Datos'); ?>
+            <?php $__env->startSection('test_panel_body'); ?>
+
+                <?php echo $__env->make('tipos.forms.tipos', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                <?php echo Form::submit('Actualizar', ['class' => 'btn btn-primary btn-lg col-md-6 col-sm-offset-3']); ?>
+
+            <?php $__env->stopSection(); ?>
+            <?php echo $__env->make('widgets.panel', array('class'=>'primary', 'controls'=>true, 'header'=>true, 'as'=>'test'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        </div>
+    </div>
+    <?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('plantillas.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

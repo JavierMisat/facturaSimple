@@ -1,0 +1,110 @@
+<div id="usuarios">
+    <table class="table <?php echo e($class); ?>">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Rol</th>
+            <th>Municipio</th>
+            <th>Departamento</th>
+            <th>Foto</th>
+            <th>Operaciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($usuarios as $usuario): ?>
+            <tr>
+
+                <td>
+                    <?php if($usuario->pagosUsuario->count() > 0): ?>
+
+                        <a href="/usuarios/<?php echo e($usuario->id_usuario); ?>"><strong><i
+                                        class="fa fa-user"></i>&nbsp;&nbsp;<?php echo e($usuario->nombre_completo); ?></strong></a>
+                    <?php else: ?>
+                        <i class="fa fa-user"></i>&nbsp;&nbsp;<?php echo e($usuario->nombre_completo); ?>
+
+                    <?php endif; ?>
+                </td>
+
+                <td>
+                    <?php if($usuario->pagosUsuario->count() > 0): ?>
+
+                        <a href="/usuarios/<?php echo e($usuario->id_usuario); ?>"><strong><i
+                                        class="fa fa-envelope-o"></i>&nbsp;&nbsp;<?php echo e($usuario->email); ?></strong></a>
+                    <?php else: ?>
+                        <i class="fa fa-envelope-o"></i>&nbsp;&nbsp;<?php echo e($usuario->email); ?>
+
+                    <?php endif; ?>
+                </td>
+
+                <td>
+                    <?php if($usuario->telefono != null): ?>
+                        <a href="tel:<?php echo e($usuario->telefono); ?>"><i class="fa fa-phone-square"></i> <?php echo e($usuario->telefono); ?>
+
+                        </a>
+                    <?php endif; ?>
+                </td>
+
+                <td>
+
+                    <?php if($usuario->rolUsuario->id_rol == $usuario::ADMIN): ?>
+                        <span class="label label-danger"><strong
+                                    class="text-uppercase"><?php echo e($usuario->rolUsuario->descripcion); ?></strong></span>
+
+                    <?php elseif($usuario->rolUsuario->id_rol == $usuario::SUPER_ADMIN): ?>
+                        <span class="label label-primary"><strong><?php echo e($usuario->rolUsuario->descripcion); ?></strong></span>
+                    <?php else: ?>
+                        <span class="label label-default"><strong><?php echo e($usuario->rolUsuario->descripcion); ?></strong></span>
+                    <?php endif; ?>
+
+                </td>
+
+                <?php if($usuario->municipioUsuario->pagosMunicipio->count() > 0): ?>
+                    <th>
+                        <a href="/municipios/<?php echo e($usuario->municipioUsuario->id_municipio); ?>">
+                            <span class="fa fa-map-marker"></span>&nbsp;&nbsp;<?php echo e($usuario->municipioUsuario->descripcion); ?>
+
+                        </a>
+                    </th>
+                <?php else: ?>
+                    <th><span class="fa fa-map-marker"></span>&nbsp;&nbsp;<?php echo e($usuario->municipioUsuario->descripcion); ?>
+
+                    </th>
+                <?php endif; ?>
+
+                <td><?php echo e($usuario->departamentoUsuario->descripcion); ?></td>
+
+
+                <td>
+                    <?php if($usuario->pagosUsuario->count() > 0): ?>
+                        <a href="/usuarios/<?php echo e($usuario->id_usuario); ?>">
+                            <img class="img-responsive img-thumbnail" style="width:100px;"
+                                 src="<?php echo e(isset($usuario->foto) ? "perfiles/$usuario->foto" : "/perfiles/default.png"); ?>"
+                                 alt="<?php echo e($usuario->nombre); ?>">
+                        </a>
+                    <?php else: ?>
+
+                        <img class="img-responsive img-thumbnail" style="width:100px;"
+                             src="<?php echo e(isset($usuario->foto) ? "perfiles/$usuario->foto" : "/perfiles/default.png"); ?>"
+                             alt="<?php echo e($usuario->nombre); ?>">
+                    <?php endif; ?>
+                </td>
+
+
+                <td>
+                    <?php echo $__env->make('widgets.dropdown-button', array('class'=>'primary', 'value'=>'Eliminar / Editar', 'rounded'=>true, 'submenu'=> array(
+                'lists' =>array('name' => 'Editar', 'link' => "usuarios/$usuario->id_usuario/edit"),
+			              array('name' => 'Eliminar', 'onclick' => 'seleccionEliminar(this)', 'id' => $usuario->id_usuario, 'data-toggle' => 'modal', 'data-target' => '.bs-example-modal-sm', 'link' => '#')
+			            )), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                </td>
+
+            </tr>
+
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <?php echo $usuarios->render(); ?>
+
+</div>
+

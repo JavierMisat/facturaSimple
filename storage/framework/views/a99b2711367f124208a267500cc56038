@@ -1,0 +1,23 @@
+<div class="btn-group <?php if(isset($up)): ?> dropup <?php endif; ?>">
+	<?php if(isset($split)): ?>
+		<button type="button" class="btn btn-<?php echo e(isset($class) ? $class : 'default'); ?> <?php echo e(isset($rounded) ? 'btn-rounded' : ''); ?> <?php echo e(isset($bordered) ? 'btn-bordered' : ''); ?> <?php if(isset($size)): ?> btn-<?php echo e($size); ?> <?php endif; ?>  <?php echo e(isset($disabled) ? 'disabled' : ''); ?>"><?php echo e($value); ?></button>
+		<button type="button" class="btn btn-<?php echo e(isset($class) ? $class : 'default'); ?> <?php echo e(isset($rounded) ? 'btn-rounded' : ''); ?> <?php echo e(isset($bordered) ? 'btn-bordered' : ''); ?> dropdown-toggle haha" data-toggle="dropdown" aria-expanded="false">
+			<span class="caret"></span>
+			<span class="sr-only"></span>
+		</button>
+	<?php else: ?>
+	<button type="button" class="btn btn-<?php echo e(isset($class) ? $class : 'default'); ?> <?php echo e(isset($rounded) ? 'btn-rounded' : ''); ?> <?php echo e(isset($bordered) ? 'btn-bordered' : ''); ?> <?php if(isset($size)): ?> btn-<?php echo e($size); ?> <?php endif; ?>  <?php echo e(isset($disabled) ? 'disabled' : ''); ?> dropdown-toggle right-split" data-toggle="dropdown" aria-expanded="false"><?php echo e($value); ?>
+
+		<span class="caret"></span>
+	</button>
+
+<?php endif; ?>
+
+	<ul class="dropdown-menu" role="menu">
+		<?php if(isset($submenu)): ?>
+			<?php foreach($submenu as $menu): ?>
+				<li><a href="<?php echo e($menu['link']); ?>" data-toggle="<?php echo e(isset($menu['data-toggle']) ? $menu['data-toggle'] : ''); ?>" data-target="<?php echo e(isset($menu['data-target']) ? $menu['data-target'] : ''); ?>" onclick="<?php echo e(isset($menu['onclick']) ? $menu['onclick'] : ''); ?>" id="<?php echo e(isset($menu['id']) ? $menu['id'] : ''); ?>"> <?php echo e($menu['name']); ?></a></li>
+			<?php endforeach; ?>
+		<?php endif; ?>
+	</ul>
+</div>

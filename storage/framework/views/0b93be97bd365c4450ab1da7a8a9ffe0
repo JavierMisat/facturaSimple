@@ -1,0 +1,28 @@
+<?php $__env->startSection('page_title'); ?> Consultar Estado de Cuenta <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('dashboard-content'); ?>
+
+    <?php echo $__env->make('cliente.modal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('alertas.exito', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <div class="row">
+        <div class="col-md-12">
+            <?php $__env->startSection('htable_panel_title','Consulta tu estado de cuenta ingresando tu documento'); ?>
+            <?php $__env->startSection('htable_panel_body'); ?>
+                <?php echo $__env->make('inicio.forms.buscador', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <hr />
+                <div id="clientes" class="hidden">Resultados de busqueda</div>
+                <?php echo $__env->make('widgets.alert', array('class'=>'danger', 'dismissable'=>true, 'message'=> 'Error, no se pudo realizar la consulta, intentalo de nuevo más tarde.'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php $__env->stopSection(); ?>
+            <?php echo $__env->make('widgets.panel', array('class'=>'info', 'controls'=>true, 'header'=>true, 'as'=>'htable'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        </div>
+
+    </div>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js_personalizado'); ?>
+    <?php echo Html::script('js/crud/motor_busqueda.js'); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('plantillas.front', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

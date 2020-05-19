@@ -1,0 +1,1 @@
+@include('inicio.datos.ajaxResultadoCliente', array('class'=>'table-hover', 'clientes' => $clientes))

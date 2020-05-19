@@ -1,0 +1,1 @@
+@include('municipio.datos.pagos', ['pagos' => $municipio->pagosMunicipio()->orderBy('created_at', 'DESC')->paginate(5)])

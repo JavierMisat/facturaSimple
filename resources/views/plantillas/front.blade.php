@@ -1,0 +1,334 @@
+@extends('plantillas.plain')
+
+@section('body')
+    <div id="app-container">
+        <nav class="navbar navbar-inverse navbar-fixed-top striped-bg" id="top-navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="sidenav-toggle" href="#"><span class="brandbar"><i
+                                    class="fa fa-bars hidd"></i></span></a></span>
+                    <a class="navbar-brand" href="{{ url ('/') }}"><i class="fa fa-signal"></i>&nbsp;Sucursal Virtual
+                        Simple</a>
+                    <div class="solution">By Innovamos.co</div>
+                </div>
+                <div class="right-admin">
+                    <ul>
+                        <li class="dropdown hidd">
+                            <a href="#" class="dropdown-toggle admin-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false">
+
+                                <img class="img-circle admin-img img-thumbnail"
+                                     src="{{  url('/img/icono-simple-comunicaciones.png') }}"
+                                     alt="Sistema de soporte Simple Comunicaciones">
+
+                            </a>
+
+                            <ul class="dropdown-menu admin" role="menu">
+
+                                <li><a href="{{ url('/admin')  }}"><i
+                                                class="fa fa-lock"></i> Iniciar Sesión </a></li>
+                            </ul>
+
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right top-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle notoggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false">
+                                <span><i class="fa fa-circle text-primary"></i></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="padder-h-xs">
+                                    <table class="table color-swatches-table text-center no-m-b">
+                                        <tr>
+                                            <td>
+                                                <a href="javascript:;" data-theme="green" class="theme-picker">
+                                                    <i class="fa fa-circle fa-2x green-base"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="javascript:;" data-theme="blue" class="theme-picker">
+                                                    <i class="fa fa-circle fa-2x blue-base"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="javascript:;" data-theme="red" class="theme-picker">
+                                                    <i class="fa fa-circle fa-2x red-base"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="javascript:;" data-theme="orange" class="theme-picker">
+                                                    <i class="fa fa-circle fa-2x orange-base"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;" id="boxed-layout"><i class="fa fa-expand-toggle fa-tp"></i></a>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle admin-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false">
+
+                                <img class="img-circle admin-img img-thumbnail"
+                                     src="{{ url('/img/icono-simple-comunicaciones.png') }}"
+                                     alt="Sistema de soporte Simple Comunicaciones">
+
+                                <span class="add">
+							            ADMINISTRACIÓN
+                                    <i class="fa fa-angle-down"></i></span>
+
+                            </a>
+
+                            <ul class="dropdown-menu admin" role="menu">
+
+                                <li><a href="{{ url('/admin')  }}"><i
+                                                class="fa fa-lock"></i> Iniciar Sesión </a></li>
+                            </ul>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="striped-bg" id="sidenav">
+            <div role="tabpanel" id="navTabs">
+                <div class="sidebar-controllers">
+                    <ul class="nav nav-tabs nav-justified sidebar-top-nav" role="tablist">
+
+                    </ul>
+                    <div class="">
+                        <div class="tab-content-scroller tab-content sidebar-section-wrap">
+                            <div role="tabpanel" class="tab-pane active" id="menu">
+                                <div class="text-center padder-h-xs">
+
+                                    <img src="{{ url('/img/soporte-simple-comunicaciones.png') }}"
+                                         alt="Sucursal Virtual Simple" class="img-responsive" style="width: 200px; margin: auto;"/>
+
+                                </div>
+                                <div class="section-heading">PANEL DE CLIENTES SIMPLE</div>
+                                <ul class="nav sidebar-nav ">
+
+                                    <li {{ (Request::is('/') || Request::is('*estadocuenta*') ? 'class=active' : '') }} >
+                                        <a href="{{ url ('/') }}"><i class="fa fa-search"></i> Consultar Estado de Cuenta</a>
+                                    </li>
+
+                                    <li {{ (Request::is('*cobertura') ? 'class=active' : '') }} ><a
+                                                href="{{ url ('cobertura') }}"><i class="fa fa-location-arrow"></i>
+                                            Nuestra Cobertura</a>
+
+                                    <li {{ (Request::is('*oficinas') ? 'class=active' : '') }} ><a
+                                                href="{{ url ('oficinas') }}"><i class="fa fa-building-o"></i> Centros de Atención</a>
+
+                                </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="body-container">
+            @if (trim($__env->yieldContent('page_heading')))
+                <div class="page-title clearfix">
+                    <div class="pull-left">
+                        <h1>@yield('page_heading')</h1>
+                        <small class="subtitle">@yield ('page_subtitle')</small>
+                    </div>
+                    <ol class="breadcrumb pull-right">
+                        <li class="active">@yield('page_heading')</li>
+                        <li><a href="{{ url ('') }}"><i class="fa fa-tachometer"></i></a></li>
+                    </ol>
+                </div>
+        @endif
+        <!-- <div class="statswrap">
+
+				@yield ('stats')
+
+                </div> -->
+
+            <div class="conter-wrapper">
+
+                @yield('dashboard-content')
+
+            </div>
+
+            <div id="footer-wrap" class="footer">
+                Todos los derechos reservados © {{ date('Y')  }} <a href="http://innovamos.co" target="_new"
+                                                                    style="font-weight: bold;font-size:15px;"><span
+                            style="color:#333;">Desarrollado por </span><span
+                            style="color:#00afe8;"> Innovamos </span></a>
+                <span class="pull-right">
+					<a href="https://www.facebook.com/simplecomunicaciones/" target="_blank"><i
+                                class="fa fa-facebook-square"></i></a>
+					<a href="https://plus.google.com/+Simplecomunicaciones" target="_blank">&nbsp;<i
+                                class="fa fa-google-plus-square"></i></a>
+				</span>
+            </div>
+        </div>
+    </div>
+
+@stop
+
+@section('js')
+
+    @parent
+
+    {!! Html::script('js/chat.js')!!}
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            // Sidebar Charts
+
+            // Pie Chart
+            var chart3 = c3.generate({
+                bindto: '#sidebar-piechart',
+                data: {
+
+                    // iris data from R
+                    columns: [
+                        ['1', 36],
+                        ['2', 54],
+                        ['3', 12],
+                    ],
+                    type: 'pie',
+                    onclick: function (d, i) {
+                        console.log("onclick", d, i);
+                    },
+                    onmouseover: function (d, i) {
+                        console.log("onmouseover", d, i);
+                    },
+                    onmouseout: function (d, i) {
+                        console.log("onmouseout", d, i);
+                    }
+                },
+                color: {
+                    pattern: ['#06c5ac', '#3faae3', '#ee634c', '#6bbd95', '#f4cc0b', '#9b59b6', '#16a085', '#c0392b']
+                },
+                pie: {
+                    expand: true
+                },
+                size: {
+                    width: 140,
+                    height: 140
+                },
+                tooltip: {
+                    show: false
+                }
+
+            });
+
+            // Bar Chart
+            var chart6 = c3.generate({
+                bindto: '#sidebar-barchart',
+                data: {
+                    columns: [
+                        ['data1', 30, 200, 100, 400, 250, 310, 90, 125, 50]
+                    ],
+                    type: 'bar'
+                },
+                bar: {
+                    width: {
+                        ratio: 0.8
+                    }
+                },
+                size: {
+                    width: 200,
+                    height: 120
+                },
+                tooltip: {
+                    show: false
+                },
+                color: {
+                    pattern: ['#06c5ac', '#3faae3', '#ee634c', '#6bbd95', '#f4cc0b', '#9b59b6', '#16a085', '#c0392b']
+                },
+                axis: {
+                    y: {
+                        show: false,
+                        color: '#ffffff'
+                    }
+                }
+            });
+
+            // Sidebar Tabs
+            $('#navTabs .sidebar-top-nav a').click(function (e) {
+                e.preventDefault()
+                $(this).tab('show');
+
+                setTimeout(function () {
+                    $('.tab-content-scroller').perfectScrollbar('update');
+                }, 10);
+
+            });
+
+            $('.subnav-toggle').click(function () {
+                $(this).parent('.sidenav-dropdown').toggleClass('show-subnav');
+                $(this).find('.fa-angle-down').toggleClass('fa-flip-vertical');
+
+                setTimeout(function () {
+                    $('.tab-content-scroller').perfectScrollbar('update');
+                }, 500);
+
+            });
+
+            $('.sidenav-toggle').click(function () {
+                $('#app-container').toggleClass('push-right');
+
+                setTimeout(function () {
+                    $('.tab-content-scroller').perfectScrollbar('update');
+                }, 500);
+
+            });
+
+            // Boxed Layout Toggle
+            $('#boxed-layout').click(function () {
+
+                $('body').toggleClass('box-section');
+
+                var hasClass = $('body').hasClass('box-section');
+
+                $.get('/api/change-layout?layout=' + (hasClass ? 'boxed' : 'fluid'));
+
+            });
+
+            $('.tab-content-scroller').perfectScrollbar();
+
+            $('.theme-picker').click(function () {
+                changeTheme($(this).attr('data-theme'));
+            });
+
+        });
+
+        function changeTheme(theme) {
+
+            $('<link>')
+                .appendTo('head')
+                .attr({type: 'text/css', rel: 'stylesheet'})
+                .attr('href', '/css/app-' + theme + '.css');
+
+            $.get('api/change-theme?theme=' + theme);
+        }
+
+
+    </script>
+
+@stop
+
+@section('js_personalizado')
+    aaaa
+    {!! Html::script('js/chat.js')!!}}
+@endsection

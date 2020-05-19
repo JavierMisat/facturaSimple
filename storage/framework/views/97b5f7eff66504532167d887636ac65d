@@ -1,0 +1,15 @@
+<?php $__env->startSection('page_title'); ?>	Detalle de pago <?php $__env->stopSection(); ?>
+<?php $__env->startSection('page_subtitle'); ?>
+    Información Completa de pago
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page_heading', 'Detalles del pago'); ?>
+<?php $__env->startSection('dashboard-content'); ?>
+
+    <?php echo $__env->make('pago.forms.detalles', ['pago' => $pago], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php $__env->stopSection(); ?>
+
+
+
+
+<?php echo $__env->make('plantillas.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

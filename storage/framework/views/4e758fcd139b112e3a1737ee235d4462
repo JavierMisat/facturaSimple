@@ -1,0 +1,34 @@
+<?php $__env->startSection('page_title'); ?> Lugares donde estamos presentes <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('dashboard-content'); ?>
+
+    <div class="row">
+        <div class="col-md-12">
+            <?php $__env->startSection('htable_panel_title','Donde Estamos Presentes'); ?>
+            <?php $__env->startSection('htable_panel_body'); ?>
+
+                <div class="col-md-5 col-lg-offset-3" >
+                    <div id="map"></div>
+                </div>
+
+                <?php $__env->stopSection(); ?>
+            <?php echo $__env->make('widgets.panel', array('class'=>'info', 'controls'=>true, 'header'=>true, 'as'=>'htable'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        </div>
+
+    </div>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js_personalizado'); ?>
+
+
+    <?php echo Html::script('js/mapdata.js'); ?>
+
+    <?php echo Html::script('js/countrymap.js'); ?>
+
+
+    <?php echo Html::script('js/quitar-marca.js'); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('plantillas.front', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

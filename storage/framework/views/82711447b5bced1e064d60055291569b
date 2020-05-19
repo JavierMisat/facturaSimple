@@ -1,0 +1,70 @@
+<div class="form-group">
+    <?php echo Form::label('nombre', 'Nombre'); ?>
+
+    <?php echo Form::text('nombre',null, ['class' => 'form-control', 'placeholder' => 'Ingresa un nombre.']); ?>
+
+</div>
+
+<div class="form-group">
+    <?php echo Form::label('apellido', 'Apellido'); ?>
+
+    <?php echo Form::text('apellido',null, ['class' => 'form-control', 'placeholder' => 'Ingresa un apellido.']); ?>
+
+</div>
+
+<div class="form-group">
+    <?php echo Form::label('correo', 'Correo'); ?>
+
+    <div class="input-group mb-10">
+        <span class="input-group-addon">@</span>
+        <?php echo Form::email('correo',null, ['class' => 'form-control', 'placeholder' => 'Ingresa un email. (opcional)']); ?>
+
+    </div>
+</div>
+
+<div class="form-group">
+    <?php echo Form::label('documento', 'Documento'); ?>
+
+    <?php echo Form::text('documento',null, ['class' => 'form-control', 'placeholder' => 'Ingresa un documento de identidad.']); ?>
+
+</div>
+
+<div class="form-group">
+    <?php echo Form::label('telefono', 'Teléfono'); ?>
+
+    <?php echo Form::tel('telefono',null, ['class' => 'form-control', 'placeholder' => 'Ingresa un teléfono o celular. (opcional)', 'autocomplete' => 'off']); ?>
+
+</div>
+
+<div class="form-group">
+    <?php echo Form::label('direccion', 'Direccion'); ?>
+
+    <?php echo Form::text('direccion',null, ['class' => 'form-control', 'placeholder' => 'Ingresa la dirección.', 'autocomplete' => 'off']); ?>
+
+</div>
+
+<div class="form-group">
+    <?php echo Form::label('tipo_cliente', 'Tipo Cliente'); ?>
+
+    <?php echo Form::select('tipo_cliente',(['' => 'Selecciona un tipo de cliente'] + $tipo_cliente), null, ['class' => 'form-control']); ?>
+
+
+
+</div>
+
+<div class="form-group">
+    <?php echo Form::label('departamento', 'Departamento'); ?>
+
+    <?php echo Form::select('departamento', $departamentos, null, ['class' => 'form-control', 'id' => 'departamento']); ?>
+
+</div>
+
+<div class="form-group">
+    <?php echo Form::label('municipio', 'Municipio'); ?>
+
+    <?php echo Form::select('municipio', $municipios, null, ['class' => 'form-control', 'id' => 'municipio']); ?>
+
+</div>
+
+
+<hr/>

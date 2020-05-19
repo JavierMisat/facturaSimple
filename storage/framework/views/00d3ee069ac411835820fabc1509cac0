@@ -1,0 +1,22 @@
+<div class="back">
+
+    <?php echo $__env->yieldContent('errors'); ?>
+
+    <div class="login-outer">
+        <div class="login-wrap">
+            <div class="login-left striped-bg text-center">
+                <a href="<?php echo e(url('/')); ?>" class="logo-lg">
+                    <i class="fa fa-signal"></i> Sistema de facturas
+                </a>
+                <div class="slogan">Simple Comunicaciones S.A.S</div>
+            </div>
+
+            <div class="login-right striped-bg">
+                <?php echo $__env->yieldContent('page-content'); ?>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<?php echo $__env->make('plantillas.plain', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,40 @@
+{
+  "name": "theme-react-2",
+  "version": "0.0.0",
+  "authors": [
+    "sankhadeep <sankhadeep@sahusoft.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "2.1.4",
+    "Chart.js": "~1.0.2",
+    "eonasdan-bootstrap-datetimepicker": "~4.7.14",
+    "c3js-chart": "~0.4.9",
+    "c3": "~0.4.9",
+    "fontawesome": "~4.3.0",
+    "bootstrap": "3.3.2",
+    "bootstrap-calendar": "~0.2.4",
+    "fullcalendar": "~2.3.1",
+    "chartist": "~0.7.3",
+    "masonry": "~3.2.2",
+    "moment": "2.5.0",
+    "nanoscroller": "~0.8.5",
+    "perfect-scrollbar": "~0.6.1",
+    "ckeditor": "~4.4.7",
+    "growl": "~1.2.5",
+    "loaders.css": "~0.1.0",
+    "circles": "*"
+  },
+  "resolutions": {
+    "jquery": "2.1.4",
+    "bootstrap": "3.3.2",
+    "moment": "2.5.0"
+  }
+}

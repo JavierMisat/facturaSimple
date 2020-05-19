@@ -1,0 +1,15 @@
+<div class="row col-sm-offset-2">
+    <div class="col-lg-10">
+        <img class="img-responsive col-sm-offset-3 padder"  src="<?php echo e(url('img/internet-pacho-cundinamarca-@x2.png')); ?>" alt="Simple Comunicaciones S.A.S logotipo">
+        <div class="input-group">
+            <input type="text" class="form-control input-lg rounded" name="documento" id="documento" placeholder="Ingresa tu número de Documento o Nit" value="">
+            <span class="input-group-btn">
+                <button class="btn btn-lg btn-info rounded" name="buscar" id="buscar" onclick="buscarCliente()" type="button">
+                    CONSULTAR
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+
+        </div>
+    </div>
+</div>

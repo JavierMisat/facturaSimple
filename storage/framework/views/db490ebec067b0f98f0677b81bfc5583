@@ -1,0 +1,37 @@
+<div id="usuarios">
+    <table class="table <?php echo e($class); ?>">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Municipio</th>
+            <th>Recaudos de pagos de usuario</th>
+            <th>Último Recaudo</th>
+            <th>Departamento</th>
+            <th>Foto</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($usuarios as $usuario): ?>
+            <tr>
+                <td><a href="/usuarios/<?php echo e($usuario->id_usuario); ?>"><i class="fa fa-user">&nbsp;&nbsp;<?php echo e($usuario->nombre_completo); ?></i></a></td>
+                <td><a href="/usuarios/<?php echo e($usuario->id_usuario); ?>"><i class="fa fa-inbox">&nbsp;&nbsp;<?php echo e($usuario->email); ?></i></a></td>
+                <td><?php echo e($usuario->telefono); ?></td>
+                <td><a href="/municipios/<?php echo e($usuario->municipioUsuario->id_municipio); ?>"><li class="fa fa-map-marker"></li> <?php echo e($usuario->municipioUsuario->descripcion); ?></a></td>
+                <td><a href="/usuarios/<?php echo e($usuario->id_usuario); ?>"><span class="badge warningb"><strong><?php echo e($usuario->pagosUsuario->count()); ?> PAGOS</strong></span></a></td>
+                <td><a href="/pagos/<?php echo e($usuario->pagosUsuario->last()->id_pago); ?>"><span class="fa fa-file-text-o"></span>&nbsp;&nbsp;#<?php echo e($usuario->pagosUsuario->last()->cod_factura); ?> </a></td>
+                <td><?php echo e($usuario->departamentoUsuario->descripcion); ?></td>
+                <td><a href="/usuarios/<?php echo e($usuario->id_usuario); ?>"><img class="img-responsive img-thumbnail" style="width:100px;"
+                         src="<?php echo e(isset($usuario->foto) ? "/perfiles/$usuario->foto" : "/perfiles/default.png"); ?>"
+                         alt="<?php echo e($usuario->nombre); ?>"></a></td>
+
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+
+    </table>
+    <?php echo $usuarios->render(); ?>
+
+</div>
+

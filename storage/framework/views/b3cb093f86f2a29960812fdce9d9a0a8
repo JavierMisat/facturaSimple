@@ -1,0 +1,35 @@
+<div id="municipios">
+    <table class="table <?php echo e($class); ?>">
+        <thead>
+        <tr>
+            <th>Departamento</th>
+            <th>Municipio</th>
+            <th>Total de pagos recaudados</th>
+            <th>Ultimo recaudo de municipio</th>
+            <th>Fecha último recaudo</th>
+            <th>Operaciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($municipios as $municipio): ?>
+            <tr>
+                <td><span class="label label-default"><?php echo e($municipio->departamentoMunicipio->descripcion); ?></span></td>
+
+                <td><a href="/municipios/<?php echo e($municipio->id_municipio); ?>"><span class="fa fa-map-marker">&nbsp;&nbsp;<?php echo e($municipio->descripcion); ?></span></a></td>
+
+                <td><a href="/municipios/<?php echo e($municipio->id_municipio); ?>"><span class="badge violetb"><?php echo e($municipio->pagosMunicipio->count()); ?> Pagos</span></a></td>
+
+                <td><a href="/pagos/<?php echo e($municipio->pagosMunicipio->last()->id_pago); ?>"><span class="fa fa-file-text"></span>&nbsp;&nbsp;#<?php echo e($municipio->pagosMunicipio->last()->cod_factura); ?></a></td>
+
+                <td><?php echo e($municipio->pagosMunicipio->last()->created_at->formatLocalized('%a %d %b %Y')); ?> a las <?php echo e($municipio->pagosMunicipio->last()->created_at->format('h:i:s A')); ?></td>
+
+                <td><a  href="/municipios/<?php echo e($municipio->id_municipio); ?>" class="btn btn-primary  btn-bordered ">Ver Detalle De Pagos</a></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+
+    </table>
+    <?php echo $municipios->render(); ?>
+
+</div>
+

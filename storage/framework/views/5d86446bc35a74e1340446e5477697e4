@@ -1,0 +1,3 @@
+<?php if(Session::has('mensaje')): ?>
+    <?php echo $__env->make('widgets.alert', array('class'=>'success', 'dismissable'=>true, 'message'=> Session::get('mensaje'), 'style' => 'display:block'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php endif; ?>

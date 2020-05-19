@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: SistemaGestionSimple
+        psr4_prefix: SistemaGestionSimple
+        src_path: app

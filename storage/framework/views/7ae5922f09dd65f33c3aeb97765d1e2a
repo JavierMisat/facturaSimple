@@ -1,0 +1,47 @@
+<?php $__env->startSection('page_title'); ?> Gestionar Clientes <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page_subtitle'); ?>
+    Crea, elimina y agrega clientes de manera fácil.
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page_heading','Gestionar Clientes'); ?>
+
+<?php $__env->startSection('dashboard-content'); ?>
+    <?php echo $__env->make('cliente.modal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('alertas.exito', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <div class="row">
+        <div class="col-md-12">
+            <?php echo $__env->make('widgets.alert', array('class'=>'info', 'dismissable'=>true, 'message'=> 'Se ha eliminado correctamente el cliente'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php echo $__env->make('widgets.alert', array('class'=>'danger', 'dismissable'=>true, 'message'=> 'Error, no se puede borrar clientes con facturas asociadas.'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php $__env->startSection('htable_panel_body'); ?>
+                <?php echo $__env->make('cliente.forms.buscador', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                <?php if($clientes->count() > 0): ?>
+
+                    <div class="pull-right" id="registrosEncontrados">
+                        <span class="label label-default pull-right" style="font-size: 17px;"><?php echo e($numClientes); ?>
+
+                            CLIENTES ENCONTRADOS</span>
+                    </div>
+                    <?php echo $__env->make('cliente.listaClientes', array('class'=>'table-hover', 'cliente' => $clientes), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                <?php else: ?>
+
+                    <h2 class="text-center padder"><i class="fa fa- fa-users fa-1x"></i> Aún no hay clientes
+                        registrados.</h2>
+
+                <?php endif; ?>
+
+
+            <?php $__env->stopSection(); ?>
+            <?php echo $__env->make('widgets.panel', array('class'=>'primary', 'controls'=>true, 'header'=>true, 'as'=>'htable'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        </div>
+    </div>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js_personalizado'); ?>
+    <?php echo Html::script('js/crud/clientes.js'); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('plantillas.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

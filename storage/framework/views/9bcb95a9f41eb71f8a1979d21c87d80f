@@ -1,0 +1,118 @@
+<div id="clientes">
+    <?php if($clientes->count() > 0): ?>
+    <table class="table <?php echo e($class); ?>">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th># Documento</th>
+            <th>Teléfono</th>
+            <th>Direccion</th>
+            <th>Municipio</th>
+            <th>Estado Cliente</th>
+            <th>Tipo Cliente</th>
+            <th>Operaciones</th>
+        </tr>
+        </thead>
+        <?php foreach($clientes as $cliente): ?>
+            <tbody>
+            <tr>
+
+                <?php if($cliente->facturasCliente->count() > 0): ?>
+
+                    <td>
+                        <a href="/estadocuenta/<?php echo e($cliente->id_cliente); ?>"><strong> <?php echo e($cliente->nombre); ?> </strong></a>
+                    </td>
+
+                    <td>
+                        <a href="/estadocuenta/<?php echo e($cliente->id_cliente); ?>"><strong>    <?php echo e($cliente->apellido); ?> </strong></a>
+                    </td>
+
+                    <td>
+                        <a href="/estadocuenta/<?php echo e($cliente->id_cliente); ?>"><strong>  <?php echo e($cliente->documento); ?> </strong></a>
+                    </td>
+                <?php else: ?>
+
+                    <td>
+                        <?php echo e($cliente->nombre); ?>
+
+                    </td>
+
+                    <td>
+                        <?php echo e($cliente->apellido); ?>
+
+                    </td>
+
+                    <td>
+                        <?php echo e($cliente->documento); ?>
+
+                    </td>
+
+                <?php endif; ?>
+                <td>
+                    <?php if($cliente->telefono != null): ?>
+                        <a href="/estadocuenta/<?php echo e($cliente->id_cliente); ?>"><i
+                                    class="fa fa-phone-square"></i> <?php echo e($cliente->telefono); ?>
+
+                        </a>
+                    <?php endif; ?>
+                </td>
+
+                <td>
+                    <span class="fa fa-location-arrow"></span>&nbsp;&nbsp;<?php echo e($cliente->direccion); ?>
+
+                </td>
+
+                <td>
+                    <span class="fa fa-map-marker"></span>&nbsp;&nbsp;<?php echo e($cliente->municipioCliente->descripcion); ?>
+
+                </td>
+
+
+                <?php if($cliente->facturasCliente()->where('estado', 0)->count() == 1): ?>
+
+                    <td><span class="label label-warning">PAGO PENDIENTE</span></td>
+
+                <?php elseif($cliente->facturasCliente()->where('estado', 0)->count() > 1): ?>
+
+                    <td><span class="label label-danger">CLIENTE EN MORA</span></td>
+
+                <?php elseif($cliente->facturasCliente()->where('estado', 1)->count() > 0): ?>
+
+                    <td><span class="label label-success">CLIENTE AL DÍA</span></td>
+
+                <?php else: ?>
+                    <td><span class="label label-info">SIN FACTURAS</span></td>
+
+                <?php endif; ?>
+
+
+                <td>
+                    <span class="label label-default"><strong><?php echo e($cliente->tipoCliente->descripcion); ?></strong></span>
+                </td>
+
+                <td>
+                    <a href="/estadocuenta/<?php echo e($cliente->id_cliente); ?>"
+                           class="btn btn-lg btn-primary btn-rounded fa fa-eye  "> VER DETALLE </a>
+                </td>
+            </tr>
+            </tbody>
+        <?php endforeach; ?>
+    </table>
+    <?php else: ?>
+        <div class="col-md-10  col-lg-offset-1" id="sinResultados">
+            <div class="stat panel striped-bg">
+                <div class="row">
+                    <div class="col-md-2 bg-danger icon-col striped-bg">
+                        <i class="fa fa-warning fa-4x"></i>
+                    </div>
+                    <div class="col-md-9 text-col">
+                        <i class="fa fa-warning fa-5x"></i>
+                        <h3>No hay clientes con el número de documento ingresado.</h3>
+                        <p>Intenta de nuevo o comunicate con nosotros.</p>
+                    </div>
+                </div>
+            </div> </div>
+    <?php endif; ?>
+</div>
+

@@ -1,0 +1,22 @@
+<?php $__env->startSection('page_title'); ?> Municipio de <?php echo e($municipio->descripcion); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('page_subtitle'); ?>
+    Información detallada.
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page_heading', "Municipio de {$municipio->descripcion}"); ?>
+<?php $__env->startSection('dashboard-content'); ?>
+    <?php echo $__env->make('municipio.modal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('alertas.exito', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('widgets.alert', array('class'=>'danger', 'dismissable'=>true, 'message'=> 'Error, no se puede borrar usuarios con recaudos asociadas.'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('widgets.alert', array('class'=>'success', 'icon' => 'check-circle', 'dismissable'=>true, 'message'=> 'pago'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <?php echo $__env->make('municipio.panel', ['municipio' => $municipio], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js_personalizado'); ?>
+<?php echo Html::script('js/crud/municipios.js'); ?>
+
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('plantillas.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

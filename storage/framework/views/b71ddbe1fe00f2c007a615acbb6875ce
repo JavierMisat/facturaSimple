@@ -1,0 +1,50 @@
+<?php $__env->startSection('page_title'); ?>   Crear Factura <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page_subtitle'); ?>
+    Registrar nueva factura
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page_heading','Registro de factura'); ?>
+
+<?php $__env->startSection('dashboard-content'); ?>
+    <?php echo $__env->make('alertas.request', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <?php echo Form::open(['route' => 'facturas.store', 'method' => 'POST', 'files' => true ]); ?>
+
+    <div class="row col-sm-offset-3">
+        <div class="col-md-8">
+
+            <?php echo $__env->make('alertas.exito', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+            <?php $__env->startSection('test_panel_title', 'Diligencia los datos de la factura'); ?>
+            <?php $__env->startSection('test_panel_body'); ?>
+
+                <?php echo Form::hidden('usuario', Auth::user()->id_usuario); ?>
+
+                    <?php echo $__env->make('factura.forms.factura', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <button class="btn btn-gray btn-lg col-md-3 col-sm-offset-2" onclick="history.go(-2);" type="button"><i class="fa fa fa-angle-double-left fa-1x"></i> Regresar</button>
+
+                <?php echo Form::submit('Registrar Factura', ['class' => 'btn btn-primary btn-lg col-md-3 col-sm-offset-1']); ?>
+
+            <?php $__env->stopSection(); ?>
+            <?php echo $__env->make('widgets.panel', array('class'=>'primary', 'controls'=>true, 'header'=>true, 'as'=>'test'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        </div>
+    </div>
+    <?php echo Form::close(); ?>
+
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js_personalizado'); ?>
+    <?php echo Html::script("js/bootstrap3-typeahead.min.js"); ?>
+
+    <?php echo Html::script('js/buscador-clientes.js'); ?>
+
+    <?php echo Html::script('js/selector-ciudad.js'); ?>
+
+    <?php echo Html::script('js/formato-numeros.js'); ?>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('plantillas.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

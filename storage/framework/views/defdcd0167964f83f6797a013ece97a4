@@ -1,0 +1,53 @@
+<div id="pagos">
+    <table class="table <?php echo e($class); ?>">
+        <thead>
+        <tr>
+            <th>Cod. Pago</th>
+            <th>Comentarios</th>
+            <th>Fecha Pago</th>
+            <th>Hora</th>
+            <th>Municipio</th>
+            <th>Recaudador</th>
+            <th>Teléfono Re.</th>
+            <th>Operaciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($pagos as $pago): ?>
+
+            <tr>
+                <td><a href="/pagos/<?php echo e($pago->id_pago); ?>"><span class="fa fa-file-text"></span>&nbsp;&nbsp;#<?php echo e($pago->cod_factura); ?></a></td>
+                <?php if(strlen($pago->comentarios) > $pago::LIMITE_COMENTARIO): ?>
+                    <td><?php echo e(substr($pago->comentarios,0, $pago::LIMITE_COMENTARIO)); ?>
+
+                        <strong>...</strong></td>
+                <?php else: ?>
+                    <td><?php echo e($pago->comentarios); ?> </td>
+                <?php endif; ?>
+                <td><?php echo e($pago->created_at->formatLocalized('%a %d %b %Y')); ?></td>
+                <td><?php echo e($pago->created_at->format('h:i:s A')); ?></td>
+
+                <td>
+                    <a href="/municipios/<?php echo e($pago->municipioPago->id_municipio); ?>">
+                        <span class="fa fa-map-marker"></span>&nbsp;&nbsp;<?php echo e($pago->municipioPago->descripcion); ?>
+
+                        <?php echo $__env->make('widgets.badge', array('class'=>'warningb', 'value'=> $pago->municipioPago->pagosMunicipio->count()), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                    </a>
+                </td>
+                <td><a href="/usuarios/<?php echo e($pago->usuarioPago->id_usuario); ?>"><i class="fa fa-user">&nbsp;&nbsp;<?php echo e($pago->usuarioPago->nombre_completo); ?></i></a></td>
+                <td><?php echo e($pago->usuarioPago->telefono); ?></td>
+                <td>
+                    <?php echo $__env->make('widgets.dropdown-button', array('class'=>'primary', 'value'=>'Eliminar / Editar', 'rounded'=>true, 'submenu'=> array(
+                'lists' =>array('name' => 'Editar', 'link' => "/pagos/{$pago->id_pago}/edit"),
+			              array('name' => 'Eliminar', 'onclick' => 'seleccionEliminar(this)', 'id' => $pago->id_pago, 'data-toggle' => 'modal', 'data-target' => '.bs-example-modal-sm', 'link' => '#'),
+			              array('name' => 'Ver Detalle', 'link' => "/pagos/{$pago->id_pago}")
+			          )), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <?php echo $pagos->render(); ?>
+
+</div>
+

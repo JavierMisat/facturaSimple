@@ -1,0 +1,1 @@
+@include('municipio.datos.usuarios', ['usuarios' => $usuarios->usuariosMunicipio->paginate(5), 'pago'])

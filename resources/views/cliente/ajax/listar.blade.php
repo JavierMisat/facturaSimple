@@ -1,0 +1,1 @@
+@include('cliente.listaClientes', array('class'=>'table-hover', 'clientes' => $clientes, 'numClientes' => $numClientes))

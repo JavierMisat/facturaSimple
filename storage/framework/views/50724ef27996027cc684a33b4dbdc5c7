@@ -1,0 +1,14 @@
+
+
+<?php $__env->startSection('page_title'); ?>	Detalle de usuario <?php echo e($usuario->nombre_completo); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('page_subtitle'); ?>
+    Resumen de rendimiento de usuario
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page_heading', 'Resumen del recaudador'); ?>
+<?php $__env->startSection('dashboard-content'); ?>
+
+    <?php echo $__env->make('usuario.datos.usuarios', ['usuario' => $usuario], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('plantillas.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

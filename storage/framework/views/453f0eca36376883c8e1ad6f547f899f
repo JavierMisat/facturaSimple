@@ -1,0 +1,8 @@
+<?php $__env->startSection('page_title'); ?>	Estado de cuenta de <?php echo e($cliente->nombre_completo); ?> <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('dashboard-content'); ?>
+
+    <?php echo $__env->make('inicio.datos.cliente', ['cliente' => $cliente], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('plantillas.front', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,14 @@
+<div class="stat panel striped-bg">
+
+	<a href="<?php echo e((isset($link) ? $link : '#')); ?>" target="_self">
+	<div class="row">
+		<div class="col-md-3 bg-<?php echo e($color); ?> icon-col striped-bg">
+			<i class="fa fa-<?php echo e($icon); ?> fa-4x"></i>
+		</div>
+		<div class="col-md-9 text-col">
+			<i class="fa fa-<?php echo e($icon); ?> fa-5x"></i>
+			<h2><?php echo e($value); ?></h2>
+			<p><?php echo e($header); ?></p>
+		</div>
+	</div></a>
+</div>

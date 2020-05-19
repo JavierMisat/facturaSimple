@@ -1,0 +1,1 @@
+@include('factura.datos.listaFacturas', array('class'=>'table-hover', 'facturas' => $facturas))

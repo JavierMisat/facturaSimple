@@ -1,0 +1,45 @@
+<div id="facturas">
+
+        <table class="table <?php echo e($class); ?>">
+            <thead>
+            <tr>
+                <th>Cod. Factura</th>
+                <th>Cliente</th>
+                <th>Fecha Corte</th>
+                <th>Fecha Limite Pago</th>
+                <th>Valor Factura</th>
+                <th>Estado</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach($facturas as $factura): ?>
+                <tr>
+
+                  <td><a href="detallefactura/<?php echo e($factura->id_factura); ?>"> <span class="fa fa-file-text"></span>&nbsp;&nbsp;  #<?php echo e(isset($factura->cod_factura) ? $factura->cod_factura : null); ?> </a> </td>
+
+                    <td><a href="detallefactura/<?php echo e($factura->id_factura); ?>"><?php echo e($factura->clienteFactura->nombre_completo); ?> </a></td>
+
+                    <td><a href="detallefactura/<?php echo e($factura->id_factura); ?>"><?php echo e(isset($factura->fecha_corte) ? $factura->fecha_corte : null); ?> </a></td>
+
+                    <td><a href="detallefactura/<?php echo e($factura->id_factura); ?>"><?php echo e(isset($factura->fecha_limite_pago) ? $factura->fecha_limite_pago : null); ?> </a></td>
+
+                    <td><a href="detallefactura/<?php echo e($factura->id_factura); ?>"><?php echo  \Clicknow\Money\Money::COP($factura->valor_pago)  ?> </a></td>
+
+                    <?php if($factura->estado == 1): ?>
+                        <td><span class="label label-primary">PAGÓ</span></td>
+                    <?php else: ?>
+                        <td><span class="label label-danger">DEBE</span></td>
+                    <?php endif; ?>
+
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+
+        <input type="hidden" id="id_cliente" value="<?php echo e($factura->cliente); ?>">
+
+        <?php echo $facturas->render(); ?>
+
+
+</div>
+

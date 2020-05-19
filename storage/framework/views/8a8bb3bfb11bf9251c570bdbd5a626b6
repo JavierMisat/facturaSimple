@@ -1,0 +1,44 @@
+
+
+<?php $__env->startSection('page_title'); ?>   Crear Cliente <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page_subtitle'); ?>
+    Registrar nuevo cliente
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page_heading','Registro de cliente'); ?>
+
+<?php $__env->startSection('dashboard-content'); ?>
+    <?php echo $__env->make('alertas.request', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <?php echo Form::open(['route' => 'clientes.store', 'method' => 'POST', 'files' => true ]); ?>
+
+    <div class="row col-sm-offset-3">
+        <div class="col-md-8">
+
+            <?php echo $__env->make('alertas.exito', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+            <?php $__env->startSection('test_panel_title', 'Diligencia los datos del cliente'); ?>
+            <?php $__env->startSection('test_panel_body'); ?>
+
+                <?php echo Form::hidden('id_usuario', Auth::user()->id_usuario); ?>
+
+                <?php echo $__env->make('cliente.forms.cliente', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                <?php echo Form::submit('Crear Cliente', ['class' => 'btn btn-primary btn-lg col-md-6 col-sm-offset-3']); ?>
+
+            <?php $__env->stopSection(); ?>
+            <?php echo $__env->make('widgets.panel', array('class'=>'primary', 'controls'=>true, 'header'=>true, 'as'=>'test'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        </div>
+    </div>
+    <?php echo Form::close(); ?>
+
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js_personalizado'); ?>
+    <?php echo Html::script('js/selector-ciudad.js'); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('plantillas.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

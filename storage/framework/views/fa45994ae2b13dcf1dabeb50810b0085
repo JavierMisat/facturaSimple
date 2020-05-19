@@ -1,0 +1,2 @@
+
+<span class="badge <?php echo e(isset($class) ? $class : ''); ?>"><?php echo e($value); ?></span>

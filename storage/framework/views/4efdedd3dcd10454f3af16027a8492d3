@@ -1,0 +1,26 @@
+<?php $__env->startSection('page_title'); ?> Recaudos X Usuario <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page_subtitle'); ?>
+    Visualiza el rendimiento de cada recaudador.
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page_heading','Usuarios con pagos registrados'); ?>
+
+<?php $__env->startSection('dashboard-content'); ?>
+    <div class="row">
+        <div class="col-md-12">
+
+            <?php $__env->startSection('htable_panel_title','Recaudos X Usuario'); ?>
+            <?php $__env->startSection('htable_panel_body'); ?>
+                <?php echo $__env->make('pago.datos.usuarios', array('class'=>'table-hover', 'usuario' => $usuarios), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php $__env->stopSection(); ?>
+            <?php echo $__env->make('widgets.panel', array('class'=>'primary', 'controls'=>true, 'header'=>true, 'as'=>'htable'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        </div>
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js_personalizado'); ?>
+    <?php echo Html::script('/js/crud/pagos_usuarios.js'); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('plantillas.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

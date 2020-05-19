@@ -1,0 +1,60 @@
+
+
+<?php $__env->startSection('page_title'); ?>	Profile <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('dashboard-content'); ?>
+    <div class="home-wrapper">
+        <div class="cover-wrapper">
+            <div class="cover-photo" style="background-image: url( '<?php echo e(url ('img/fondo-portada.jpg')); ?> ') ;">
+                <div class="name-desg">
+                    <h3>
+                        <?php echo e(Auth::user()->nombre_completo); ?>
+
+                        <small><?php echo e(Auth::user()->rolUsuario->descripcion); ?></small>
+                    </h3>
+                </div>
+            </div>
+            <div class="profile-photo-warp">
+                <img class="profile-photo img-responsive img-circle" src="<?php echo e(isset(Auth::user()->foto) ? '/perfiles/'.Auth::user()->foto : url('/perfiles/default.png')); ?>" alt="<?php echo e(Auth::user()->nombre); ?>">
+            </div>
+        </div>
+        <div class="foobar"></div>
+
+        <div class="conter-wrapper">
+            <div >
+                <div class="profile-body row" id="profile-items">
+
+                        <?php echo $__env->make('alertas.request', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                        <?php echo Form::model(Auth::user(), ['route' => ['usuarios.update', Auth::user()->id_usuario], 'method' => 'PUT', 'files' => true ]); ?>
+
+                        <div class="row col-sm-offset-3">
+                            <div class="col-md-8">
+                                <?php $__env->startSection('test_panel_title', 'Modificar datos de usuario'); ?>
+                                <?php $__env->startSection('test_panel_body'); ?>
+
+                                    <?php echo $__env->make('usuario.forms.usuario',['usuario' => Auth::user()], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                                    <?php echo Form::submit('Actualizar', ['class' => 'btn btn-primary btn-lg col-md-6 col-sm-offset-3']); ?>
+
+                                <?php $__env->stopSection(); ?>
+                                <?php echo $__env->make('widgets.panel', array('class'=>'primary', 'controls'=>true, 'header'=>true, 'as'=>'test'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                            </div>
+                        </div>
+                        <?php echo Form::close(); ?>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js_personalizado'); ?>
+    <?php echo Html::script('js/selector-ciudad.js'); ?>
+
+<?php $__env->stopSection(); ?>
+
+
+
+<?php echo $__env->make('plantillas.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

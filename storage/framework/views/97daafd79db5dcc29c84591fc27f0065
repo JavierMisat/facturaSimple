@@ -1,0 +1,14 @@
+<?php $__env->startSection('page_title'); ?> 404 <?php $__env->stopSection(); ?>
+<?php $__env->startSection('left_content'); ?> Oops! La página que estás buscando no existe. <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page-content'); ?>
+    <div class="login-right fright striped-bg">
+        <h1 align="center">404</h1>
+        <p  class="oops">No se ha encontrado la página. </p>
+        <div class="frightFooter">
+            <a href="<?php echo e(url ('/')); ?>">Regresar a la página principal.</a>
+        </div>
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('plantillas.login', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
